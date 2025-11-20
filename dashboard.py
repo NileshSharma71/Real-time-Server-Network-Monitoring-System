@@ -59,9 +59,6 @@ if df.empty:
 else:
     # Apply Region Grouping
     df['Region'] = df['host_id'].apply(get_region)
-
-    # --- [INSERT THIS BLOCK HERE] --- 
-    # ANOMALY DETECTION (The "Data Science" Logic)
     # Filter for high CPU (>90%) or High Temp (>90C)
     anomalies = df[ (df['cpu_load'] > 90) | (df['temp_c'] > 90) ]
     
@@ -74,9 +71,8 @@ else:
             st.dataframe(anomalies[['timestamp', 'host_id', 'Region', 'temp_c', 'cpu_load']])
     else:
         st.success("✅ System Status: Normal Operations")
-    # --------------------------------
 
-    # 2. KPI Metrics (The rest of your code continues here...)
+    # 2. KPI Metrics 
     kpi1, kpi2, kpi3 = st.columns(3)
 
     avg_temp = df['temp_c'].mean()
@@ -101,7 +97,7 @@ else:
 
     with fig_col2:
         st.markdown("### 📊 Data Volume by Region")
-        # NEW CHART: Counts how many rows came from each region
+        # Counts how many rows came from each region
         count_df = df['Region'].value_counts().reset_index()
         count_df.columns = ['Region', 'Record Count']
         
@@ -123,7 +119,7 @@ else:
     st.markdown("### 📝 Live Data Feed")
     st.dataframe(df.head(15), use_container_width=True)
 
-    # --- AUTO-REFRESH LOGIC ---
+    # --- autorefresh logic ---
     if live_mode:
         time.sleep(refresh_rate)
         st.rerun()

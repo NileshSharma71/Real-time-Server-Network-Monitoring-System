@@ -6,7 +6,7 @@ import pandas as pd
 import os
 from datetime import datetime, timedelta
 
-# --- PART A: GENERATE BATCH FILES (History) ---
+# --- PART A: GENERATE BATCH FILES  ---
 print(">>> [Generator] Creating data for India, USA, and Germany...")
 
 os.makedirs("data/india_lab", exist_ok=True)

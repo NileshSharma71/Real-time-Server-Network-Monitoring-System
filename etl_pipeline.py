@@ -1,6 +1,6 @@
 import os
 import sys
-from datetime import datetime # <--- ADDED FOR TIMESTAMP FOLDER
+from datetime import datetime 
 
 # --- 1. JAVA & HADOOP SETUP ---
 java_path = r"C:\Program Files\Eclipse Adoptium\jdk-17.0.10.7-hotspot"
@@ -36,7 +36,7 @@ df_ger = spark.read.parquet("data/germany_hpc/*.parquet")
 df_ind_clean = df_ind.select(
     col("server_code").alias("host_id"),
     to_timestamp(col("timestamp_ist")).alias("timestamp"),
-    col("temp_celsius").alias("temp_c"), # <--- FIX: Read 'temp_celsius', Rename to 'temp_c'
+    col("temp_celsius").alias("temp_c"), 
     col("cpu_usage_percent").alias("cpu_load"),
     lit(None).cast("double").alias("voltage"),
     lit(None).cast("double").alias("power_watts")
@@ -86,7 +86,7 @@ print(">>> [Sink 2] Writing data to PostgreSQL...")
 
 db_properties = {
     "user": "postgres",
-    "password": "password", # <--- CHECK YOUR PASSWORD
+    "password": "password", # <--- check the password before running
     "driver": "org.postgresql.Driver"
 }
 
