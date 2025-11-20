@@ -151,5 +151,3 @@ Include your preferred license here (e.g. MIT) if you want to make this project 
 
 *Created with care — good luck building your real‑time monitoring system!*
 
-
-![Project Pipeline](pipeline2.png)
