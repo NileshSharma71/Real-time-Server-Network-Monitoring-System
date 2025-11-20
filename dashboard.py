@@ -60,7 +60,23 @@ else:
     # Apply Region Grouping
     df['Region'] = df['host_id'].apply(get_region)
 
-    # 2. KPI Metrics
+    # --- [INSERT THIS BLOCK HERE] --- 
+    # ANOMALY DETECTION (The "Data Science" Logic)
+    # Filter for high CPU (>90%) or High Temp (>90C)
+    anomalies = df[ (df['cpu_load'] > 90) | (df['temp_c'] > 90) ]
+    
+    if not anomalies.empty:
+        # Show a big red warning box
+        st.error(f"🚨 CRITICAL ALERT: {len(anomalies)} Servers are Overheating (>90°C) or Overloaded!")
+        
+        # Optional: Show the specific bad servers in a dropout menu
+        with st.expander("⚠️ View Problematic Servers Details"):
+            st.dataframe(anomalies[['timestamp', 'host_id', 'Region', 'temp_c', 'cpu_load']])
+    else:
+        st.success("✅ System Status: Normal Operations")
+    # --------------------------------
+
+    # 2. KPI Metrics (The rest of your code continues here...)
     kpi1, kpi2, kpi3 = st.columns(3)
 
     avg_temp = df['temp_c'].mean()
