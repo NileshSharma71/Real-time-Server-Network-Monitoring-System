@@ -1,0 +1,6 @@
+pyspark
+pandas
+streamlit
+plotly
+psycopg2
+uuid
