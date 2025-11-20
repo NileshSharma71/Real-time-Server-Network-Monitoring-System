@@ -16,4 +16,4 @@ This project is a Big Data ETL pipeline designed to monitor server network traff
 
 4. Visualize: Grafana connects to PostgreSQL to display real-time metrics.
 
-![Project Pipeline](pipeline.png)
+![Project Pipeline](pipeline2.png)
